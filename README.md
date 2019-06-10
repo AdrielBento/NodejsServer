@@ -23,28 +23,25 @@ Crie um database chamado `mutantes_project` no seu banco de dados Mysql
 -   password: sem senha
 -   server: localhost
 
--   login
--   senha
-    Cadastro de usuarios
-    Autenticacao
-    **Execute Migrations**
+**Execute Migrations**
+```shell
+node_modules/.bin/sequelize db:migrate
+```
 
 ### 🙍‍♂️ Users - Endpoints
 
--   Register: **/register/user**
--   Login: **/authenticate**
+-   Cadastrar: **/register/user**
+-   Login: **/authenticate** 
 
 ### 🧚‍♂️ Mutants - Endpoints
 
--   Cadastrar Mutantes
-    -   Verificar se ele ja existe
-    -   Retorno do status do cadastro
-        Listar
-        Pesquisar por habilidade
-    -   Editar
-    -   Deletar
+- Listar: **list**
+- Cadastrar: **/register/mutant**
+- Delete: **/delete/mutant**
+- Editar: **/update/mutant**
+- Pesquisa:**/search/mutant**
 
 # Migrations
 
-node_modules/.bin/sequelize migration:create --name create-mutant
+node_modules/.bin/sequelize migration:create --name  create-mutant
 node_modules/.bin/sequelize db:migrate

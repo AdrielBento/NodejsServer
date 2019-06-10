@@ -30,8 +30,7 @@ module.exports = {
         skill2,
         skill3,
       });
-
-      //   await skillController.register(skills);
+      
       res.send({ message: '✔ Mutante cadastrado com sucesso' });
     } catch (error) {
       res.send({ message: '❌ Erro ao cadastrar um mutante', error: error.message });
@@ -74,7 +73,7 @@ module.exports = {
         skill2,
         skill3,
       });
-      //   skillController.update(id);
+      
       res.send({ message: '✔ Mutante atualizado com sucesso' });
     } catch (error) {
       res.send({ message: '❌ Erro ao atualizar esse mutante', error: error.message });
