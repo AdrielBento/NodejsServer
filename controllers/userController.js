@@ -4,7 +4,7 @@ const bcript = require('bcryptjs');
 module.exports = {
   async index(req, res) {
     const users = await User.findAll();
-    res.send(users);
+    res.send({ users });
   },
 
   async register(req, res) {
@@ -24,12 +24,12 @@ module.exports = {
   },
 
   async authenticate(req, res) {
-    const { email, password } = req.query;
-    const user = await User.findOne({ where: { email } });
+    const { login, password } = req.query;
+    const user = await User.findOne({ where: { login } });
     if (!user) return res.send('😢 Usuario inexistente');
     if (!(await bcript.compare(password, user.password))) {
       return res.status(400).json({ message: '❌ Senha incorreta' });
     }
-    return res.send('✔ Login efetuado');
+    return res.send({ message: '✔ Login efetuado' });
   },
 };
