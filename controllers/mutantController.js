@@ -30,7 +30,7 @@ module.exports = {
         skill2,
         skill3,
       });
-      
+
       res.send({ message: '✔ Mutante cadastrado com sucesso' });
     } catch (error) {
       res.send({ message: '❌ Erro ao cadastrar um mutante', error: error.message });
@@ -64,7 +64,7 @@ module.exports = {
       const {
         name, skill1, skill2, skill3, photo, id,
       } = req.query;
-      const mutant = Mutant.findByPk(id);
+      const mutant = await Mutant.findByPk(id);
 
       mutant.update({
         name,
@@ -73,7 +73,7 @@ module.exports = {
         skill2,
         skill3,
       });
-      
+
       res.send({ message: '✔ Mutante atualizado com sucesso' });
     } catch (error) {
       res.send({ message: '❌ Erro ao atualizar esse mutante', error: error.message });
@@ -83,7 +83,7 @@ module.exports = {
   async search(req, res) {
     try {
       const { skill } = req.query;
-      const mutant = Mutant.findAll({
+      const mutant = await Mutant.findAll({
         where: {
           [Op.or]: [
             {
