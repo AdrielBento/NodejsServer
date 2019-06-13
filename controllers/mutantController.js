@@ -18,7 +18,7 @@ module.exports = {
       } = req.query;
 
       if (await Mutant.findOne({ where: { name, active: 1 } })) {
-        return res.send({ message: '😒 Esse Mutantante ja existe' });
+        return res.send({ message: 'Esse Mutantante ja existe' });
       }
 
       await Mutant.create({
@@ -31,9 +31,9 @@ module.exports = {
         skill3,
       });
 
-      res.send({ message: '✔ Mutante cadastrado com sucesso' });
+      res.send({ message: 'Mutante cadastrado com sucesso' });
     } catch (error) {
-      res.send({ message: '❌ Erro ao cadastrar um mutante', error: error.message });
+      res.send({ message: 'Erro ao cadastrar um mutante', error: error.message });
     }
   },
 
@@ -42,9 +42,9 @@ module.exports = {
       const { id } = req.query;
 
       Mutant.destroy({ where: { id } });
-      res.send({ message: '✔ Mutante excluido com sucesso' });
+      res.send({ message: 'Mutante excluido com sucesso' });
     } catch (error) {
-      res.send({ message: '❌ Erro ao deletar esse mutante', error: error.message });
+      res.send({ message: 'Erro ao deletar esse mutante', error: error.message });
     }
   },
 
@@ -53,9 +53,9 @@ module.exports = {
       const { id } = req.query;
       const mutant = await Mutant.findByPk(id);
       await mutant.update({ active: 0 });
-      res.send({ message: '✔ Mutante excluido com sucesso' });
+      res.send({ message: 'Mutante excluido com sucesso' });
     } catch (error) {
-      res.send({ message: '❌ Erro ao deletar esse mutante', error: error.message });
+      res.send({ message: 'Erro ao deletar esse mutante', error: error.message });
     }
   },
 
@@ -74,9 +74,9 @@ module.exports = {
         skill3,
       });
 
-      res.send({ message: '✔ Mutante atualizado com sucesso' });
+      res.send({ message: 'Mutante atualizado com sucesso' });
     } catch (error) {
-      res.send({ message: '❌ Erro ao atualizar esse mutante', error: error.message });
+      res.send({ message: 'Erro ao atualizar esse mutante', error: error.message });
     }
   },
 
@@ -107,7 +107,7 @@ module.exports = {
 
       res.send(mutant);
     } catch (error) {
-      res.send({ message: '❌ Erro ao buscar mutantes', error: error.message });
+      res.send({ message: 'Erro ao buscar mutantes', error: error.message });
     }
   },
 };
