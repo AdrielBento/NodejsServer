@@ -19,7 +19,7 @@ module.exports = {
       await User.create({ login, password: criptedPassword });
       res.send({ message: '✔ Usuario cadastrado com sucesso' });
     } catch (error) {
-      res.send({ message: '❌ Erro ao cadastrar um usuario', error });
+      res.send({ message: '❌ Erro ao cadastrar um usuario', error: error.message });
     }
   },
 

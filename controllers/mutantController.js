@@ -44,7 +44,7 @@ module.exports = {
       Mutant.destroy({ where: { id } });
       res.send({ message: '✔ Mutante excluido com sucesso' });
     } catch (error) {
-      res.send({ message: '❌ Erro ao deletar esse mutante', error });
+      res.send({ message: '❌ Erro ao deletar esse mutante', error: error.message });
     }
   },
 
