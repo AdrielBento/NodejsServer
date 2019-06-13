@@ -7,7 +7,7 @@ const { Op } = Sequelize;
 
 module.exports = {
   async list(req, res) {
-    const mutants = await Mutant.findAll();
+    const mutants = await Mutant.findAll({ where: { active: 1 } });
     res.send(mutants);
   },
 
@@ -51,11 +51,11 @@ module.exports = {
   async delete(req, res) {
     try {
       const { id } = req.query;
-      const mutant = Mutant.findById(id);
-      mutant.update({ active: 0 });
+      const mutant = await Mutant.findByPk(id);
+      await mutant.update({ active: 0 });
       res.send({ message: '✔ Mutante excluido com sucesso' });
     } catch (error) {
-      res.send({ message: '❌ Erro ao deletar esse mutante', error });
+      res.send({ message: '❌ Erro ao deletar esse mutante', error: error.message });
     }
   },
 
@@ -66,7 +66,7 @@ module.exports = {
       } = req.query;
       const mutant = await Mutant.findByPk(id);
 
-      mutant.update({
+      await mutant.update({
         name,
         photo,
         skill1,
