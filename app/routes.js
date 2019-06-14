@@ -1,7 +1,9 @@
 const express = require('express');
+// const multer = require('multer');
 const usersController = require('../controllers/userController');
 const mutantsController = require('../controllers/mutantController');
 
+// const upload = multer({ dest: 'uploads/' });
 const routes = express.Router();
 routes.get('/users', usersController.index);
 routes.get('/authenticate', usersController.authenticate);

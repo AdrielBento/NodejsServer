@@ -13,7 +13,7 @@ module.exports = {
     },
     photo: {
       allowNull: false,
-      type: DataTypes.STRING,
+      type: DataTypes.BLOB,
     },
     id_user: {
       allowNull: false,

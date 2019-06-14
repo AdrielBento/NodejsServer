@@ -26,10 +26,10 @@ module.exports = {
   async authenticate(req, res) {
     const { login, password } = req.query;
     const user = await User.findOne({ where: { login } });
-    if (!user) return res.send('Usuario inexistente');
+    if (!user) return res.send({ message: 'Usuario inexistente' });
     if (!(await bcript.compare(password, user.password))) {
       return res.status(400).json({ message: 'Senha incorreta' });
     }
-    return res.send({ message: 'Login efetuado' });
+    return res.status(400).json({ message: 'Login efetuado' });
   },
 };

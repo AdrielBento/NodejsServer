@@ -1,7 +1,8 @@
-const { Mutant, Skill } = require('../app/models');
-const skillController = require('./skillController');
 const bcript = require('bcryptjs');
 const Sequelize = require('sequelize');
+const fs = require('fs');
+const skillController = require('./skillController');
+const { Mutant, Skill } = require('../app/models');
 
 const { Op } = Sequelize;
 
@@ -15,12 +16,12 @@ module.exports = {
     try {
       const {
         name, skill1, skill2, skill3, photo, id_user,
-      } = req.query;
+      } = req.body;
 
       if (await Mutant.findOne({ where: { name, active: 1 } })) {
-        return res.send({ message: 'Esse Mutantante ja existe' });
+        return res.send({ message: 'Esse Mutantante ja existe', error: '' });
       }
-
+      //   await saveImage.
       await Mutant.create({
         name,
         photo,
@@ -31,10 +32,17 @@ module.exports = {
         skill3,
       });
 
-      res.send({ message: 'Mutante cadastrado com sucesso' });
+      res.send({ message: 'Mutante cadastrado com sucesso', error: '' });
     } catch (error) {
       res.send({ message: 'Erro ao cadastrar um mutante', error: error.message });
     }
+  },
+
+  async saveImage() {
+    const base64String = 'data:image/png;base64,iVBORw0KGgoAAAANSUhEUgA';
+    fs.writeFile('image.png', base64Image, { encoding: 'base64' }, (err) => {
+      console.log('File created');
+    });
   },
 
   async destroy(req, res) {
