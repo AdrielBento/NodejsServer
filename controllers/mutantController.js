@@ -71,7 +71,7 @@ module.exports = {
     try {
       const {
         name, skill1, skill2, skill3, photo, id,
-      } = req.query;
+      } = req.body;
       const mutant = await Mutant.findByPk(id);
 
       await mutant.update({

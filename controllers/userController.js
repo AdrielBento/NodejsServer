@@ -30,6 +30,6 @@ module.exports = {
     if (!(await bcript.compare(password, user.password))) {
       return res.status(400).json({ message: 'Senha incorreta' });
     }
-    return res.status(400).json({ message: 'Login efetuado' });
+    return res.status(200).json({ message: 'Login efetuado' });
   },
 };
